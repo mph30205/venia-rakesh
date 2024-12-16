@@ -95,11 +95,34 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   if (!expanded || isDesktop.matches) {
     // collapse menu on escape press
     window.addEventListener('keydown', closeOnEscape);
+    if (window.innerWidth >= 900) {
+      nav.addEventListener('focusout', closeOnFocusLost);
+    }
     // collapse menu on focus lost
-    nav.addEventListener('focusout', closeOnFocusLost);
   } else {
     window.removeEventListener('keydown', closeOnEscape);
-    nav.removeEventListener('focusout', closeOnFocusLost);
+    if (window.innerWidth >= 900) {
+      nav.addEventListener('focusout', closeOnFocusLost);
+    }
+  }
+}
+
+function mobileNavView() {
+  const navItems = document.getElementsByClassName('nav-drop');
+  function setClass(els, className, fnName) {
+    for (let i = 0; i < els.length; i += 1) {
+      els[i].classList[fnName](className);
+    }
+  }
+  for (let i = 0; i < navItems.length; i += 1) {
+    navItems[i].onclick = function () {
+      const setClasses = !this.classList.contains('is-active');
+      setClass(navItems, 'is-active', 'remove');
+
+      if (setClasses) {
+        this.classList.toggle('is-active');
+      }
+    };
   }
 }
 
@@ -163,4 +186,36 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  const topNavBar = document.createElement('div');
+  topNavBar.classList.add('top-nav-bar');
+  block.prepend(topNavBar);
+
+  topNavBar.innerHTML = '<div class="top-header">'
+    + '<select class="header-currency">'
+    + '<option value="USD">Main Website Store - Default Store View</option>'
+    + '<option value="EUR">Main Website Store - Demo Store View2</option>'
+    + '<option value="EUR">Second Store - Second Store V1</option>'
+    + '<option value="EUR">Second Store - Second Store View2</option>'
+    + '</select>'
+    + '<div class=\'divider\'>|</div>'
+    + '<select class="header-currency">'
+    + '<option value="USD">$ USD</option>'
+    + '<option value="EUR"># EUR</option>'
+    + '</select>'
+    + '</div>';
+  block.append(navWrapper);
+
+  if (window.innerWidth <= 900) {
+    mobileNavView();
+  }
 }
+
+window.onscroll = function () {
+  const header = document?.querySelector('.nav-wrapper');
+  if (window.pageYOffset > 0) {
+    header?.classList.add('remove-top-nav-bar');
+  } else {
+    header?.classList.remove('remove-top-nav-bar');
+  }
+};
