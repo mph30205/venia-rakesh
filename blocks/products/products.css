@@ -1,0 +1,61 @@
+.products {
+    margin-top: 80px;
+    padding: 24px;
+    box-shadow: 0 0 10px 0 #00000042;
+}
+
+.products > div {
+    display: block;
+    gap: 24px;
+}
+
+.products > div > div > p {
+    font-size: 20px;
+}
+
+.products > div > div > p:not(:first-of-type) {
+    font-size: 16px;
+}
+
+.products > div > div > ul {
+    padding: 0;
+}
+
+.products > div > div > ul li {
+    list-style: none;
+    font-size: 16px;
+}
+
+.products > div > div > picture img {
+    width: 100%;
+    height: auto;
+}
+
+.products > div > div > p .icon {
+    border: none;
+    width: 28px;
+    height: 28px;
+}
+
+.products > div > div > p .icon img {
+    width: 100%;
+    border: none;
+    margin-left: 8px;
+    position: relative;
+    top: 7px;
+}
+
+@media (width >= 900px) {
+    .products > div {
+        display: flex;
+    }
+
+    .products > div > div > p picture img {
+        width: 50%;
+    }
+
+    .products > div > div > p .icon img {
+        width: 100%;
+        border: none;
+    }
+}
