@@ -107,24 +107,24 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
-function mobileNavView() {
-  const navItems = document.getElementsByClassName('nav-drop');
-  function setClass(els, className, fnName) {
-    for (let i = 0; i < els.length; i += 1) {
-      els[i].classList[fnName](className);
-    }
-  }
-  for (let i = 0; i < navItems.length; i += 1) {
-    navItems[i].onclick = function () {
-      const setClasses = !this.classList.contains('is-active');
-      setClass(navItems, 'is-active', 'remove');
+// function mobileNavView() {
+//   const navItems = document.getElementsByClassName('nav-drop');
+//   function setClass(els, className, fnName) {
+//     for (let i = 0; i < els.length; i += 1) {
+//       els[i].classList[fnName](className);
+//     }
+//   }
+//   for (let i = 0; i < navItems.length; i += 1) {
+//     navItems[i].onclick = function () {
+//       const setClasses = !this.classList.contains('is-active');
+//       setClass(navItems, 'is-active', 'remove');
 
-      if (setClasses) {
-        this.classList.toggle('is-active');
-      }
-    };
-  }
-}
+//       if (setClasses) {
+//         this.classList.toggle('is-active');
+//       }
+//     };
+//   }
+// }
 
 /**
  * loads and decorates the header, mainly the nav
@@ -187,35 +187,18 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
 
-  const topNavBar = document.createElement('div');
-  topNavBar.classList.add('top-nav-bar');
-  block.prepend(topNavBar);
-
-  topNavBar.innerHTML = '<div class="top-header">'
-    + '<select class="header-currency">'
-    + '<option value="USD">Main Website Store - Default Store View</option>'
-    + '<option value="EUR">Main Website Store - Demo Store View2</option>'
-    + '<option value="EUR">Second Store - Second Store V1</option>'
-    + '<option value="EUR">Second Store - Second Store View2</option>'
-    + '</select>'
-    + '<div class=\'divider\'>|</div>'
-    + '<select class="header-currency">'
-    + '<option value="USD">$ USD</option>'
-    + '<option value="EUR"># EUR</option>'
-    + '</select>'
-    + '</div>';
+  const topNav = document.createElement('div');
+  topNav.className = 'top-nav';
+  block.prepend(topNav);
+  topNav.innerHTML = '<div class="nav-store"><span>Main Website Store - Default Store View</span><span >|</span><span class="nav-currency">$ USD</span></div>';
   block.append(navWrapper);
-
-  if (window.innerWidth <= 900) {
-    mobileNavView();
-  }
 }
 
-window.onscroll = function () {
-  const header = document?.querySelector('.nav-wrapper');
-  if (window.pageYOffset > 0) {
-    header?.classList.add('remove-top-nav-bar');
+window.onscroll = function hideTopNav() {
+  const header = document.querySelector('.top-nav');
+  if (window.pageYOffset > 20) {
+    header?.classList.add('remove-top-nav');
   } else {
-    header?.classList.remove('remove-top-nav-bar');
+    header?.classList.remove('remove-top-nav');
   }
 };

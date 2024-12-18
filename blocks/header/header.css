@@ -11,69 +11,32 @@ header .nav-wrapper {
   padding-right: 24px;
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   header .nav-wrapper {
     padding-left: 0;
     padding-right: 0;
   }
 }
 
-
-header .nav-wrapper.remove-top-nav-bar {
+.top-nav.remove-top-nav {
+  position: absolute;
   top: 0;
 }
 
-header .top-nav-bar {
-  background-color: #EBEBEB;
-  box-shadow: 0 8px 20px 0 #00000042;
-}
-
-header .top-nav-bar .top-header {
+header .header .top-nav .nav-store {
+  background-color: #efefef;
   display: flex;
   justify-content: flex-end;
-  padding: 5px 24px 5px 5px;
-  max-width: 1200px;
-  margin: auto;
-}
-
-@media (width >= 900px) {
-  header .top-nav-bar .top-header {
-    padding: 5px 32px 5px 5px;
-  }
-}
-
-header .top-nav-bar .top-header .top-header-title {
-  border-right: 1px solid;
-  margin-right: 10px;
-  padding-right: 10px;
+  gap: 10px;
   font-size: 14px;
-}
-
-header .top-nav-bar .top-header .header-currency {
-  font-size: 14px;
-  background: none;
-  border: none;
-}
-
-header .top-nav-bar .top-header .header-currency::after {
-  content: '|';
-  display: block;
-}
-
-.divider {
-  margin: 0 5px;
-}
-
-select {
-  appearance: none;
+  padding: 10px;
 }
 
 header nav {
   box-sizing: border-box;
   display: grid;
   grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / auto 1fr auto;
+    'hamburger brand tools'var(--nav-height) 'sections sections sections'1fr / auto 1fr auto;
   align-items: center;
   gap: 0 24px;
   margin: auto;
@@ -84,14 +47,32 @@ header nav {
 
 header nav[aria-expanded='true'] {
   grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
+    'hamburger brand'var(--nav-height) 'sections sections'1fr 'tools tools'var(--nav-height) / auto 1fr;
   overflow-y: auto;
   min-height: 100dvh;
 }
 
-@media (width >= 900px) {
+header nav p {
+  margin: 0;
+  line-height: 1;
+}
+
+header nav .nav-tools p {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+header nav .nav-tools p span {
+  padding-left: 12px;
+  height: 16px;
+}
+
+header nav[aria-expanded='true'] .section.nav-tools p span {
+  height: 24px;
+}
+
+@media (width >=900px) {
   header nav {
     display: flex;
     justify-content: space-between;
@@ -103,13 +84,7 @@ header nav[aria-expanded='true'] {
   header nav[aria-expanded='true'] {
     min-height: 0;
     overflow: visible;
-    justify-content: space-around;
   }
-}
-
-header nav p {
-  margin: 0;
-  line-height: 1;
 }
 
 header nav a:any-link {
@@ -190,7 +165,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   transform: rotate(-45deg);
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   header nav .nav-hamburger {
     display: none;
     visibility: hidden;
@@ -211,7 +186,7 @@ header nav .nav-brand img {
   height: auto;
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   header nav .nav-brand img {
     width: 128px;
     height: auto;
@@ -237,32 +212,32 @@ header nav .nav-sections ul {
   font-size: var(--body-font-size-s);
 }
 
-header nav .nav-sections ul > li {
+header nav .nav-sections ul>li {
   font-weight: 500;
   padding-bottom: 20px;
   position: relative;
 }
 
-@media (width >= 900px) {
-  header nav .nav-sections ul > li {
+@media (width >=900px) {
+  header nav .nav-sections ul>li {
     position: static;
   }
 }
 
-@media (width >= 900px) {
-  header nav .nav-sections ul > li {
+@media (width >=900px) {
+  header nav .nav-sections ul>li {
     font-weight: 400;
     padding-bottom: 0;
     display: block;
   }
 }
 
-header nav .nav-sections ul > li > ul {
+header nav .nav-sections ul>li>ul {
   margin-top: 0;
   display: none;
 }
 
-header nav .nav-sections ul > li > ul > li {
+header nav .nav-sections ul>li>ul>li {
   font-weight: 400;
   padding-bottom: 0;
   padding-top: 8px;
@@ -298,7 +273,7 @@ header nav .nav-sections .nav-drop.is-active::after {
   top: 10px;
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   header nav .nav-sections {
     display: block;
     visibility: visible;
@@ -341,16 +316,16 @@ header nav .nav-sections .nav-drop.is-active::after {
     margin: 0;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li {
+  header nav .nav-sections .default-content-wrapper>ul>li {
     flex: 0 1 auto;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
+  header nav .nav-sections .default-content-wrapper>ul>li>ul {
     display: none;
     position: relative;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
+  header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='true']>ul {
     display: block;
     position: absolute;
     left: -24px;
@@ -361,7 +336,7 @@ header nav .nav-sections .nav-drop.is-active::after {
     white-space: initial;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > .nav-drop:hover > ul {
+  header nav .nav-sections .default-content-wrapper>ul>.nav-drop:hover>ul {
     display: flex;
     position: absolute;
     width: 100%;
@@ -373,15 +348,15 @@ header nav .nav-sections .nav-drop.is-active::after {
     box-shadow: 0 8px 10px 0 #00000042;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
+  header nav .nav-sections .default-content-wrapper>ul>li>ul>li {
     padding: 8px 0;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > .nav-drop:hover > ul > li {
+  header nav .nav-sections .default-content-wrapper>ul>.nav-drop:hover>ul>li {
     padding-top: 32px;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > .nav-drop:hover > ul::after {
+  header nav .nav-sections .default-content-wrapper>ul>.nav-drop:hover>ul::after {
     content: '';
     width: 100%;
     display: block;
@@ -390,7 +365,7 @@ header nav .nav-sections .nav-drop.is-active::after {
     background-color: #CCC;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > .nav-drop:hover::after {
+  header nav .nav-sections .default-content-wrapper>ul>.nav-drop:hover::after {
     content: '';
     display: inline-block;
     right: 2px;
@@ -405,15 +380,15 @@ header nav .nav-sections .nav-drop.is-active::after {
     left: 2px;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > u {
+  header nav .nav-sections .default-content-wrapper>ul>li>u {
     text-decoration: none;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > .nav-drop > u {
+  header nav .nav-sections .default-content-wrapper>ul>.nav-drop>u {
     text-decoration: none;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > .nav-drop:hover {
+  header nav .nav-sections .default-content-wrapper>ul>.nav-drop:hover {
     text-decoration: underline;
   }
 }
@@ -423,28 +398,32 @@ header nav .nav-tools {
   grid-area: tools;
 }
 
-header nav .nav-tools p {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  padding-right: 40px;
-}
+@media (width >=900px) {
+  header .top-nav .nav-store {
+    padding: 5px 32px 5px 5px;
+  }
 
-@media (width >= 900px) {
+  header .top-nav .nav-store .nav-currency {
+    font-size: 14px;
+  }
+
   header nav .nav-tools p {
     font-size: initial;
     padding-right: 0;
   }
-}
 
-header nav .nav-tools p span {
-  padding-left: 4px;
-  height: 16px;
-}
-
-@media (width >= 900px) {
   header nav .nav-tools p span {
     height: initial;
     padding-left: 16px;
+  }
+
+  header nav[aria-expanded='true'] .section.nav-tools p {
+    position: static;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  header nav[aria-expanded='true'] .section.nav-tools p span {
+    padding-right: 0;
   }
 }

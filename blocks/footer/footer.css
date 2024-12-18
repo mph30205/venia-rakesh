@@ -58,7 +58,6 @@ footer .footer>div .default-content-wrapper>ul>li>ul>li span{
 }
 
 footer .footer>div .default-content-wrapper>ul>li:last-child>ul>li:last-child{
-  border: 2px solid black;
   padding: 0.5rem;
   border-radius: 0.5rem;
   text-align: end;
